@@ -27,11 +27,13 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
-  <div class="collapse navbar-collapse" style="padding-left: 1350px;" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse"  id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      <li>
+        <h2 style="color:cyan;padding-left: 100px;">One stop shop!</h2>
+      </li>
       
-      
-      <li class="nav-item active">
+      <li class="nav-item active" style="padding-left: 1000px;padding-top: 4px;">
           <!-- <a class="nav-link" href="#"><b>Cart</b></a> -->
           <button type="button" routerLink='/mycart' class="btn btn-warning">
             <b>Cart </b> <span class="badge badge-light">{{cartItemCount}}</span>
@@ -44,6 +46,8 @@
   </div>
 </nav>
 
+<app-productdisplay></app-productdisplay>
+<!---
   <div class="card highlight-card card-small">
     
     <svg id="rocket-smoke" alt="Rocket Ship Smoke" xmlns="http://www.w3.org/2000/svg" width="516.119" height="1083.632" viewBox="0 0 516.119 1083.632">
@@ -51,5 +55,6 @@
     </svg>
   </div>
 
+-->
 
 <router-outlet></router-outlet>
