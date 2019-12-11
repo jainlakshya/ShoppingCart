@@ -8,22 +8,22 @@
                    <table class="table table-bordered table-responsive" style="display: inline;margin-left: 5px;" *ngFor="let prod of allProducts">
                  <tr>
                    <td>
-                      <img src="https://elasticbeanstalk-ca-central-1-645720678044.s3.ca-central-1.amazonaws.com/{{prod.Image}}.jpg" width="160px;" height="200px;"/>
+                      <img src="https://elasticbeanstalk-ca-central-1-645720678044.s3.ca-central-1.amazonaws.com/{{prod.image}}.jpg" width="160px;" height="200px;"/>
                    </td>
                  </tr>
                  <tr>
-                   <td>{{prod.Name}}</td>
+                   <td>{{prod.name}}</td>
                  </tr>
                  <tr>
-                   <td>Price: ${{prod.UnitPrice}}</td>
+                   <td>Price: ${{prod.unitPrice}}</td>
                  </tr>
                  <tr>
-                    <td>{{prod.Description}}</td>
+                    <td>{{prod.description}}</td>
                   </tr>
                   <tr>
                       <td>
                           <button type="button"   class="btn btn-outline-success" (click)="OnAddCart(prod)"><b>Add to cart</b></button>
-                          <input type="number" [ngModel] ="prod.Quantity" (ngModelChange) ="prod.Quantity=$event" style="height: 36px; margin-left: 12px; margin-top: -0.05px; width:40px;" class="form-check-input">
+                          <input type="number" [ngModel] ="prod.quantity" (ngModelChange) ="prod.quantity=$event" style="height: 36px; margin-left: 12px; margin-top: -0.05px; width:40px;" class="form-check-input">
 
                       </td>
                     </tr>

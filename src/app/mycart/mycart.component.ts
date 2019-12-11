@@ -31,7 +31,7 @@ export class MycartComponent implements OnInit {
   {
     //Get Product
     this.productAddedTocart=this.productService.getProductFromCart();
-    this.productAddedTocart.find(p=>p.Id==product.Id).Quantity = 1+ product.Quantity;
+    this.productAddedTocart.find(p=>p.id==product.id).quantity = 1+ product.quantity;
     this.productService.removeAllProductFromCart();
     this.productService.addProductToCart(this.productAddedTocart);
     this.calculteAllTotal(this.productAddedTocart);
@@ -39,11 +39,11 @@ export class MycartComponent implements OnInit {
   }
   onRemoveQuantity(product:Product)
   {
-    if(product.Quantity==1){
-      this.productAddedTocart = this.productAddedTocart.filter(p=>p.Id !==product.Id);
+    if(product.quantity==1){
+      this.productAddedTocart = this.productAddedTocart.filter(p=>p.id !==product.id);
     }else{
       this.productAddedTocart=this.productService.getProductFromCart();
-      this.productAddedTocart.find(p=>p.Id==product.Id).Quantity = product.Quantity-1;
+      this.productAddedTocart.find(p=>p.id==product.id).quantity = product.quantity-1;
     }
     
     this.productService.removeAllProductFromCart();
@@ -55,10 +55,18 @@ export class MycartComponent implements OnInit {
   {
     let total=0;
     for (let i in allItems) {
-      total= total+(allItems[i].Quantity *allItems[i].UnitPrice);
+      total= total+(allItems[i].quantity *allItems[i].unitPrice);
    }
    this.allTotal=total;
   }
+
+  removeAllItems(){
+    this.productService.removeAllProductFromCart();
+    this.productAddedTocart.splice(0);
+    this.allTotal=0;
+
+  }
+
 
   public closeAlert(alert: IAlert) {
     const index: number = this.alerts.indexOf(alert);

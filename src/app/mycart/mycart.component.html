@@ -6,9 +6,11 @@
               <div class="card">
                 <div class="card-body">
                  <h4 style="color:chocolate">Items in your cart:
-                    <span style="margin-inline-start: 35%; color:blue;">
+                  <button *ngIf="allTotal!==0" style="margin-inline-start: 3%; margin-bottom: 5px;" class="btn btn-outline-success" (click)="removeAllItems()">Remove All Items</button>
+
+                    <span style="margin-inline-start: 25%; color:blue;">
                     Total amount: ${{allTotal}}
-                    <button *ngIf="allTotal!==0" style="margin-inline-start: 3%; margin-bottom: 5px;" class="btn btn-outline-success" (click)="acc.toggle('static-2')">CheckOut</button>
+                    <button *ngIf="allTotal!==0" routerLink='/checkout' (click)="removeAllItems()" style="margin-inline-start: 3%; margin-bottom: 5px;" class="btn btn-outline-success" >CheckOut</button>
                 </span>
                     
             </h4>
@@ -31,18 +33,18 @@
                       </tr>
                       </thead>
                       <tr *ngFor="let prod of productAddedTocart;let q = index">
-                        <td><img src="https://elasticbeanstalk-ca-central-1-645720678044.s3.ca-central-1.amazonaws.com/{{prod.Image}}.jpg" width="160px;" height="200px;"/></td>
-                        <td class="text-center">{{prod.Name}}-{{prod.Description}}</td>
-                        <td>${{prod.UnitPrice}}</td>
-                        <td>{{prod.Quantity}}</td>
+                        <td><img src="https://elasticbeanstalk-ca-central-1-645720678044.s3.ca-central-1.amazonaws.com/{{prod.image}}.jpg" width="160px;" height="200px;"/></td>
+                        <td class="text-center">{{prod.name}}-{{prod.description}}</td>
+                        <td>${{prod.unitPrice}}</td>
+                        <td>{{prod.quantity}}</td>
                         <td>
                           <div class="form-inline">
                           <button type="button" (click)="onAddQuantity(prod)" class="btn btn-success">+</button> 
-                          <input type="text"  [ngModel] ="prod.Quantity" (ngModelChange) ="prod.Quantity=$event" class="form-control form-inline" id="count">
+                          <input type="text"  [ngModel] ="prod.quantity" (ngModelChange) ="prod.quantity=$event" class="form-control form-inline" id="count">
                           <button type="button" (click)="onRemoveQuantity(prod)" class="btn btn-danger">-</button>
                           </div>
                         </td>
-                        <td>${{prod.UnitPrice * prod.Quantity}}</td>
+                        <td>${{prod.unitPrice * prod.quantity}}</td>
                       </tr>
                     </table>
 

@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Output,OnInit } from '@angular/core';
-import { ProductDisplay } from '../Models/ProductDisplay.Model';
-
 import { ProductService } from '../Services/product.service';
 import { Product } from '../Models/Product.Model';
 import { IAlert } from '../Models/IAlert';
@@ -37,7 +35,8 @@ export class ProductdisplayComponent implements OnInit {
                 //console.log(this.globalResponse);
                 this.allProducts=this.globalResponse;
                       for (let i in this.allProducts) {
-                        this.allProducts[i].Quantity=1;
+                        this.allProducts[i].quantity=1;
+                        console.log(this.allProducts[i].image);
                     }
                 }
               )
@@ -65,7 +64,7 @@ export class ProductdisplayComponent implements OnInit {
               }
               else
               {
-                let tempProduct=this.productAddedTocart.find(p=>p.Id==product.Id);
+                let tempProduct=this.productAddedTocart.find(p=>p.id==product.id);
                 if(tempProduct==null)
                 {
                   this.productAddedTocart.push(product);

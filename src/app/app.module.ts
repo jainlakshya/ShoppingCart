@@ -7,12 +7,14 @@ import { ProductdisplayComponent } from './productdisplay/productdisplay.compone
 import { HttpClientModule } from '@angular/common/http';
 import { MycartComponent } from './mycart/mycart.component'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductdisplayComponent,
-    MycartComponent
+    MycartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
