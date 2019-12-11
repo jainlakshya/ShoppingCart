@@ -1,41 +1,19 @@
 
-<style>
-
-    svg#rocket-smoke {
-      right: 120px;
-      transform: rotate(-5deg);
-    }
-  
-
-  svg#rocket-smoke {
-    height: 88vh;
-    position: absolute;
-    top: 10px;
-    right: 180px;
-    z-index: -10;
-  }
-
-
-
-  @media screen and (max-width: 575px) {
-    svg#rocket-smoke {
-      display: none;
-      visibility: hidden;
-    }
-  }
-</style>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
-  <div class="collapse navbar-collapse" style="padding-left: 1350px;" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse"  id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      <li>
+        
+          <button type="button" routerLink='/productCatalog' style="padding-left: 10px; padding-top:0px; padding-bottom:0px; margin-left: 100px;" class="btn bg-primary">
+            <h2 style="color:cyan;">One stop shop!</h2>
+          </button>
+
+      </li>
       
-      
-      <li class="nav-item active">
-          <!-- <a class="nav-link" href="#"><b>Cart</b></a> -->
+      <li class="nav-item active" style="padding-left: 1000px;padding-top: 4px;">
           <button type="button" routerLink='/mycart' class="btn btn-warning">
-            <b>Cart </b> <span class="badge badge-light">{{cartItemCount}}</span>
-            <span class="sr-only">unread messages</span>
+            <b>Cart </b>
           </button>
         </li>
       
@@ -43,13 +21,5 @@
 
   </div>
 </nav>
-
-  <div class="card highlight-card card-small">
-    
-    <svg id="rocket-smoke" alt="Rocket Ship Smoke" xmlns="http://www.w3.org/2000/svg" width="516.119" height="1083.632" viewBox="0 0 516.119 1083.632">
-      <path id="Path_40" data-name="Path 40" d="M644.6,141S143.02,215.537,147.049,870.207s342.774,201.755,342.774,201.755S404.659,847.213,388.815,762.2c-27.116-145.51-11.551-384.124,271.9-609.1C671.15,139.365,644.6,141,644.6,141Z" transform="translate(-147.025 -140.939)" fill="#f5f5f5"/>
-    </svg>
-  </div>
-
 
 <router-outlet></router-outlet>
