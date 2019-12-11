@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../Models/Product.Model';
 import { ProductService } from '../Services/product.service';
-import { IAlert } from '../Models/IAlert';
 
 @Component({
   selector: 'app-mycart',
@@ -13,7 +12,6 @@ export class MycartComponent implements OnInit {
   productAddedTocart:Product[];
   allTotal:number;
   public globalResponse: any;
-  public alerts: Array<IAlert> = [];
 
   constructor(private productService:ProductService) 
   {
@@ -66,11 +64,5 @@ export class MycartComponent implements OnInit {
     this.allTotal=0;
 
   }
-
-
-  public closeAlert(alert: IAlert) {
-    const index: number = this.alerts.indexOf(alert);
-    this.alerts.splice(index, 1);
-} 
 
 }

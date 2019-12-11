@@ -2,7 +2,6 @@ import { Component, EventEmitter, Output,OnInit } from '@angular/core';
 import { ProductService } from '../Services/product.service';
 import { Product } from '../Models/Product.Model';
 import { IAlert } from '../Models/IAlert';
-import { SharedService } from '../Services/shared.service';
 
 @Component({
   selector: 'app-productdisplay',
@@ -13,13 +12,10 @@ import { SharedService } from '../Services/shared.service';
 export class ProductdisplayComponent implements OnInit {
 
   public alerts: Array<IAlert> = [];
-  cartItemCount: number = 0;
-  @Output() cartEvent = new EventEmitter<number>();
   public globalResponse: any;
-  yourByteArray:any;
   allProducts: Product[];
   productAddedTocart:Product[];
-  constructor(private productService:ProductService,private sharedService:SharedService) { }
+  constructor(private productService:ProductService) { }
 
   ngOnInit() {
     this.productService.getAllProducts()
@@ -32,11 +28,9 @@ export class ProductdisplayComponent implements OnInit {
             () => {
                 //  This is Success part
                 console.log("Product fetched sucssesfully.");
-                //console.log(this.globalResponse);
                 this.allProducts=this.globalResponse;
                       for (let i in this.allProducts) {
                         this.allProducts[i].quantity=1;
-                        console.log(this.allProducts[i].image);
                     }
                 }
               )
@@ -74,7 +68,6 @@ export class ProductdisplayComponent implements OnInit {
                     type: 'success',
                     message: 'Product added to cart.'
                   });
-                  //setTimeout(function(){ }, 2000);
                   setTimeout(()=>{   
                     this.closeAlert(this.alerts);
                }, 3000);
@@ -92,10 +85,7 @@ export class ProductdisplayComponent implements OnInit {
                 }
                 
               }
-              //console.log(this.cartItemCount);
-              this.cartItemCount=this.productAddedTocart.length;
-              // this.cartEvent.emit(this.cartItemCount);
-              this.sharedService.updateCartCount(this.cartItemCount);
+
             }
             public closeAlert(alert:any) {
               const index: number = this.alerts.indexOf(alert);
