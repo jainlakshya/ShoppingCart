@@ -7,11 +7,17 @@
                 <div class="card-body">
                  <h4 style="color:chocolate">Items in your cart:
                     <span style="margin-inline-start: 35%; color:blue;">
-                    Total amount: {{allTotal}}
-                    <button style="margin-inline-start: 3%; margin-bottom: 5px;" class="btn btn-outline-success" (click)="acc.toggle('static-2')">CheckOut</button>
+                    Total amount: ${{allTotal}}
+                    <button *ngIf="allTotal!==0" style="margin-inline-start: 3%; margin-bottom: 5px;" class="btn btn-outline-success" (click)="acc.toggle('static-2')">CheckOut</button>
                 </span>
                     
             </h4>
+
+            <h2 *ngIf="allTotal==0; else elseblock">
+              Your cart is currently empty!
+            </h2>
+
+            <ng-template #elseblock>
                     
                     <table class="table table-bordered table-responsive table-hover">
                       <thead class="thead-light">
@@ -25,9 +31,9 @@
                       </tr>
                       </thead>
                       <tr *ngFor="let prod of productAddedTocart;let q = index">
-                        <td><img src="http://127.0.0.1:8887/crown.png" width="180px;" height="170px;"/></td>
+                        <td><img src="https://elasticbeanstalk-ca-central-1-645720678044.s3.ca-central-1.amazonaws.com/{{prod.Image}}.jpg" width="160px;" height="200px;"/></td>
                         <td class="text-center">{{prod.Name}}-{{prod.Description}}</td>
-                        <td>{{prod.UnitPrice}}</td>
+                        <td>${{prod.UnitPrice}}</td>
                         <td>{{prod.Quantity}}</td>
                         <td>
                           <div class="form-inline">
@@ -36,9 +42,11 @@
                           <button type="button" (click)="onRemoveQuantity(prod)" class="btn btn-danger">-</button>
                           </div>
                         </td>
-                        <td>{{prod.UnitPrice * prod.Quantity}}</td>
+                        <td>${{prod.UnitPrice * prod.Quantity}}</td>
                       </tr>
                     </table>
+
+                  </ng-template>
                 </div>
               </div>
             </div>

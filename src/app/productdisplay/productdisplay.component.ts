@@ -36,6 +36,9 @@ export class ProductdisplayComponent implements OnInit {
                 console.log("Product fetched sucssesfully.");
                 //console.log(this.globalResponse);
                 this.allProducts=this.globalResponse;
+                      for (let i in this.allProducts) {
+                        this.allProducts[i].Quantity=1;
+                    }
                 }
               )
 

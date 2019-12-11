@@ -8,7 +8,7 @@
                    <table class="table table-bordered table-responsive" style="display: inline;margin-left: 5px;" *ngFor="let prod of allProducts">
                  <tr>
                    <td>
-                      <img src="http://127.0.0.1:8887/crown.png" width="180px;" height="170px;"/>
+                      <img src="https://elasticbeanstalk-ca-central-1-645720678044.s3.ca-central-1.amazonaws.com/{{prod.Image}}.jpg" width="160px;" height="200px;"/>
                    </td>
                  </tr>
                  <tr>
@@ -23,6 +23,8 @@
                   <tr>
                       <td>
                           <button type="button"   class="btn btn-outline-success" (click)="OnAddCart(prod)"><b>Add to cart</b></button>
+                          <input type="number" [ngModel] ="prod.Quantity" (ngModelChange) ="prod.Quantity=$event" style="height: 36px; margin-left: 12px; margin-top: -0.05px; width:40px;" class="form-check-input">
+
                       </td>
                     </tr>
                </table>

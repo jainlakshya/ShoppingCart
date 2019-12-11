@@ -9,7 +9,7 @@ import { map, filter, catchError, mergeMap } from 'rxjs/operators';
 })
 export class ProductService {
 
-  public apiURL:string="http://192.168.0.25:8089/api/Products";
+  public apiURL:string="http://localhost:8089/api/Products";
   constructor(private httpClient:HttpClient) { }
 
   getAllProducts ()

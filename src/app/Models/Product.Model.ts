@@ -5,4 +5,5 @@ export interface Product
     Description:string;
     UnitPrice:number;
     Quantity:number;
+    Image:string;
 }
