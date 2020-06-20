@@ -13,6 +13,8 @@ export class ProductdisplayComponent implements OnInit {
 
   public alerts: Array<IAlert> = [];
   public globalResponse: any;
+  public productResponse: any;
+  public addResponseObject: any;
   allProducts: Product[];
   productAddedTocart:Product[];
   constructor(private productService:ProductService) { }
@@ -36,57 +38,45 @@ export class ProductdisplayComponent implements OnInit {
               )
 
  }
+
+ addToCart(id: number){
+  this.productService.addProductToCart(id)
+  .subscribe((result) => {
+    this.addResponseObject = result;              
+  },
+  error => { //This is error part
+    console.log(error.message);
+    this.alerts.push({
+      id: 1,
+      type: 'Failed',
+      message: 'Failed to add the product.'
+    });
+    setTimeout(()=>{   
+      this.closeAlert(this.alerts);
+     }, 3000);
+  },
+  () => {
+      //  This is Success part
+      console.log("Product fetched successfully.");
+      this.alerts.push({
+        id: 1,
+        type: 'success',
+        message: 'Product added to cart.'
+      });
+      setTimeout(()=>{   
+        this.closeAlert(this.alerts);
+   }, 3000);
+      }
+    )
+ }
+ 
  OnAddCart(product:Product)
             {
               console.log(product);
-              
-              this.productAddedTocart=this.productService.getProductFromCart();
-              if(this.productAddedTocart==null)
-              {
-                this.productAddedTocart=[];
-                this.productAddedTocart.push(product);
-                this.productService.addProductToCart(this.productAddedTocart);
-                this.alerts.push({
-                  id: 1,
-                  type: 'success',
-                  message: 'Product added to cart.'
-                });
-                setTimeout(()=>{   
-                  this.closeAlert(this.alerts);
-             }, 3000);
-
-              }
-              else
-              {
-                let tempProduct=this.productAddedTocart.find(p=>p.id==product.id);
-                if(tempProduct==null)
-                {
-                  this.productAddedTocart.push(product);
-                  this.productService.addProductToCart(this.productAddedTocart);
-                  this.alerts.push({
-                    id: 1,
-                    type: 'success',
-                    message: 'Product added to cart.'
-                  });
-                  setTimeout(()=>{   
-                    this.closeAlert(this.alerts);
-               }, 3000);
-                }
-                else
-                {
-                  this.alerts.push({
-                    id: 2,
-                    type: 'warning',
-                    message: 'Product already exist in cart.'
-                  });
-                  setTimeout(()=>{   
-                    this.closeAlert(this.alerts);
-               }, 3000);
-                }
-                
-              }
-
+              this.addToCart(product.id);
             }
+
+
             public closeAlert(alert:any) {
               const index: number = this.alerts.indexOf(alert);
               this.alerts.splice(index, 1);
