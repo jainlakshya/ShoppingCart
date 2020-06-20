@@ -40,7 +40,7 @@
                         <td>
                           <div class="form-inline">
                           <button type="button" (click)="onAddQuantity(prod)" class="btn btn-success">+</button> 
-                          <input type="text"  [ngModel] ="prod.quantity" (ngModelChange) ="prod.quantity=$event" class="form-control form-inline" id="count">
+                          <input type="text" readonly [ngModel] ="prod.quantity" (ngModelChange) ="prod.quantity=$event" class="form-control form-inline" id="count">
                           <button type="button" (click)="onRemoveQuantity(prod)" class="btn btn-danger">-</button>
                           </div>
                         </td>

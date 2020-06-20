@@ -9,26 +9,50 @@ import { map, filter, catchError, mergeMap } from 'rxjs/operators';
 })
 export class ProductService {
 
-  public apiURL:string="http://localhost:8083/products/getProductDetails";
+  public getAllProductsUrl:string="http://localhost:8083/products/getProductDetails";
+  public getProductFromCartUrl:string="http://localhost:8083/products/getProductfromCart";
+  public addProductToCartUrl:string="http://localhost:8083/products/addProductToCart/";
+  public removeAllProductsfromCartUrl:string="http://localhost:8083/products/removeAllProductsfromCart";
+  public removeProductfromCartUrl:string="http://localhost:8083/products/removeProductfromCart/";
+
+
   constructor(private httpClient:HttpClient) { }
 
   getAllProducts ()
   {
-    return this.httpClient.get(this.apiURL)
+    return this.httpClient.get(this.getAllProductsUrl)
     .pipe(
       map(res => res),
        catchError( this.errorHandler)
       );
   }
-  addProductToCart(prodcuts: any) {
-    localStorage.setItem("product", JSON.stringify(prodcuts));
+  addProductToCart(id: number) {
+    return this.httpClient.get(this.addProductToCartUrl+id, {responseType: 'text'})
+    .pipe(
+      map(res => res),
+       catchError( this.errorHandler)
+      );
+  }
+  removeProductFromCart(id: number) {
+    return this.httpClient.get(this.removeProductfromCartUrl+id, {responseType: 'text'})
+    .pipe(
+      map(res => res),
+       catchError( this.errorHandler)
+      );
   }
   getProductFromCart() {
-    //return localStorage.getItem("product");
-    return JSON.parse(localStorage.getItem('product'));
+    return this.httpClient.get(this.getProductFromCartUrl)
+    .pipe(
+      map(res => res),
+       catchError( this.errorHandler)
+      );
   }
   removeAllProductFromCart() {
-    return localStorage.removeItem("product");
+    return this.httpClient.get(this.removeAllProductsfromCartUrl, {responseType: 'text'})
+    .pipe(
+      map(res => res),
+       catchError( this.errorHandler)
+      );
   }
   errorHandler(error: Response) {  
     console.log(error);  
